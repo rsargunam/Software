@@ -13,3 +13,42 @@ sudo update-alternatives --remove-all java
 sudo update-alternatives --remove-all javac
 sudo update-alternatives --remove-all javaws
 sudo rm -rf /usr/lib/jvm/jdk1.8.0
+
+#Setting Local Environment Variables for JAVA & Maven
+---------------------------------------------------------
+export JAVA_HOME=/home/ravishanker/Downloads/local_install/jdk1.8.0_144
+export M2_HOME=/home/ravishanker/Downloads/local_install/apache-maven-3.5.0
+export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
+to restart > source ~/.bashrc 
+
+============================================================================
+
+#Google Chrome Install
+-----------------------------
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+
+
+
+#Vagrant Setup
+--------------------------------------
+
+step#1: go to website : www.vagrantup.com
+step#2: download and save into localfolder(vagrant_2.0.0_x86_64.deb).
+step#3: Go to Local folder and Double click on the and install vagrant_2.0.0_x86_64.deb
+step#4: Check the vagrant version [ >vagrant --version / Vagrant 1.8.1
+step#5: Instal virtualbox > sudo apt-get install virtualbox
+step#6: vagrant list -commands
+step#7: sudo vagrant init
+step#8: Vagrantfile has created
+step#9: go to Vagrantfile
+step#10: >sudo nano Vagrantfile and edit
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.network "forwarded_port", guest:80, host: 8089
+
+Step#11:Please check the sudo vagrant box list
+
+==============================================================================
