@@ -52,3 +52,46 @@ step#10: >sudo nano Vagrantfile and edit
 Step#11:Please check the sudo vagrant box list
 
 ==============================================================================
+
+Docker INstall Guide:
+
+In this section, you will be guided to install docker. Before you install the software, 
+check the kernel version and the OS architecture. The next commands have to be run as root user. 
+Run this command to become root on your Ubuntu system.
+
+>> sudo -s
+
+Then run uname -a to check the version of the currently running Linux kernel:
+
+>> uname -a
+
+To check the Ubuntu version, run:
+
+>> cat /etc/lsb-release [or] >> lsb_release -cs
+
+To Docker Install
+
+(1) Set up the docker repository
+
+>> sudo apt-get update
+
+i) Need HTTPS  Certificates:
+
+>> sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+
+ii) Add GPG - GNU's Privacy Guard:
+
+>> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+iii) Setup Stable Repo:
+
+>> sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+
+(2) Install Docker CE
+
+>>  sudo apt-get update
+>>  sudo apt-get install docker-ce -y
+
+
+
