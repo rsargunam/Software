@@ -92,6 +92,46 @@ iii) Setup Stable Repo:
 
 >>  sudo apt-get update
 >>  sudo apt-get install docker-ce -y
+=========================================================================================================================================================
 
+Jenkins Auto Build
 
+---------------------------------------------------
+
+CP Localhost to docker Machine
+================================
+sudo docker cp filename container_id:/root
+
+Jenkins - Build Process
+
+==================================
+
+Step1#: In Jenkins Please choose the ssh Plugins : SSH plugin (Execute shell scripts on remote host using ssh pre and post build Based on the cool scp plugin.)
+
+Step2#: Please confirm the Process > apt install sshpass
+
+Step3#: Create Docker Container : > sudo docker run -it --name "docker_container_name" ubuntu /bin/bash
+
+Step4#: In Docker Create User in Home Directory : > useradd -m -d /home/gamut -s /bin/bash gamut
+
+Step5#: Please give the full privileges for the user > chmod 777 -R /home/gamut/
+
+Step6#: After create the user please check the User Id :  id username > id gamut 
+
+Step7#: Please create the passwd form the docker container > passwd to set the password. (passwd Ex:username gamut)
+
+Step8#: Install ssh in Docker machine : > apt install openssh-server & Please check the Client also > apt install openssh-client
+
+Step9#: apt-get remove --purge openssh-server
+
+Step10#: After install Please start the SShd service > service ssh start 
+
+Step11#: Please check the status of SShd > service ssh status
+
+Step12#: Please confirm the Process > ps -ef | grep sshd
+
+Step13#: In Jenkins Please use this script and apply: sshpass -p '****' scp /home/ravishanker/.jenkins/workspace/accenture/target/Maven-App.war gamut@172.17.**.**:/home/local_install/tomcat8/webapps
+
+Step14#: http://172.17.0.2:8080/Maven-App/
+=============================================================================================================================
 
