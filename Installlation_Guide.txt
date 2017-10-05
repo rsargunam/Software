@@ -1,3 +1,5 @@
+#Created by Ravishanker
+
 Java Install 
 ---------------------------------------------------------------------
 sudo add-apt-repository ppa:webupd8team/java
@@ -6,31 +8,62 @@ sudo apt-get install oracle-java8-installer
 or
 wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz
 once download - extract the files tar -zxvf
-
+============================================================================
 Java Uninstall
 -------------------------------------------------------------------
 sudo update-alternatives --remove-all java
 sudo update-alternatives --remove-all javac
 sudo update-alternatives --remove-all javaws
 sudo rm -rf /usr/lib/jvm/jdk1.8.0
-
+============================================================================
+#=====================================================
 #Setting Local Environment Variables for JAVA & Maven
----------------------------------------------------------
+#=====================================================
+
+#JAVA Environment Variables Path:
+#--------------------------------
 export JAVA_HOME=/home/ravishanker/Downloads/local_install/jdk1.8.0_144
+
+#Maven Environment Variables Path:
+#---------------------------------
 export M2_HOME=/home/ravishanker/Downloads/local_install/apache-maven-3.5.0
+
+#Apache Tomcat Server Environment Variables Path:
+#------------------------------------------------
+export CATALINA_HOME=/home/ravishanker/Downloads/local_install/tomcat8
+
+#Set Both the path
+#-----------------
 export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
-to restart > source ~/.bashrc 
+
+#Restart the Bash File
+#---------------------
+> source ~/.bashrc 
 
 ============================================================================
-
+Tweak Tool;
 #Google Chrome Install
 -----------------------------
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt-get update
 sudo apt-get install google-chrome-stable
+============================================================================
+#Skype Install
+-----------------------------
+Install apt-transport-https:
+> sudo apt install apt-transport-https
 
+Download key GPG key:
+> curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
 
+Add Skype to the list of Apt repositories:
+> echo "deb https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skypeforlinux.list
+
+Install Skype Alpha:
+> sudo apt update
+> sudo apt install skypeforlinux
+============================================================================
 
 #Vagrant Setup
 --------------------------------------
@@ -92,6 +125,21 @@ iii) Setup Stable Repo:
 
 >>  sudo apt-get update
 >>  sudo apt-get install docker-ce -y
+
+#How to set the StaticIP Address in Docker
+#------------------------------------------
+
+First you need to create you own docker network (mynet123)
+
+> docker network create --subnet=172.18.0.0/16 mynet123
+
+than simply run the image (I'll take ubuntu as example)
+
+> docker run --net mynet123 --ip 172.18.0.22 -it ubuntu bash
+
+ip addr
+
+
 =========================================================================================================================================================
 
 Jenkins Auto Build
@@ -134,4 +182,12 @@ Step13#: In Jenkins Please use this script and apply: sshpass -p '****' scp /hom
 
 Step14#: http://172.17.0.2:8080/Maven-App/
 =============================================================================================================================
+AWS Install
+---------------
+
+sudo scp -r -i keys.pem apache-maven-3.5.0/ ubuntu@ec2-52-90-71-169.compute-1.amazonaws.com:/home/ravi/myBuild
+
+
+
+
 
