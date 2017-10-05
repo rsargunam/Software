@@ -22,15 +22,15 @@ sudo rm -rf /usr/lib/jvm/jdk1.8.0
 
 #JAVA Environment Variables Path:
 #--------------------------------
-export JAVA_HOME=/home/ravishanker/Downloads/local_install/jdk1.8.0_144
+export JAVA_HOME=jdk1.8.0_144
 
 #Maven Environment Variables Path:
 #---------------------------------
-export M2_HOME=/home/ravishanker/Downloads/local_install/apache-maven-3.5.0
+export M2_HOME=apache-maven-3.5.0
 
 #Apache Tomcat Server Environment Variables Path:
 #------------------------------------------------
-export CATALINA_HOME=/home/ravishanker/Downloads/local_install/tomcat8
+export CATALINA_HOME=tomcat8
 
 #Set Both the path
 #-----------------
@@ -178,7 +178,8 @@ Step11#: Please check the status of SShd > service ssh status
 
 Step12#: Please confirm the Process > ps -ef | grep sshd
 
-Step13#: In Jenkins Please use this script and apply: sshpass -p '****' scp /home/ravishanker/.jenkins/workspace/accenture/target/Maven-App.war gamut@172.17.**.**:/home/local_install/tomcat8/webapps
+Step13#: In Jenkins Please use this script and apply: 
+sshpass -p '****' scp /home/ravishanker/.jenkins/workspace/accenture/target/Maven-App.war gamut@172.17.**.**:/home/local_install/tomcat8/webapps
 
 Step14#: http://172.17.0.2:8080/Maven-App/
 =============================================================================================================================
