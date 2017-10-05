@@ -185,7 +185,7 @@ Step14#: http://172.17.0.2:8080/Maven-App/
 AWS Install
 ---------------
 
-sudo scp -r -i keys.pem apache-maven-3.5.0/ ubuntu@ec2-52-90-71-169.compute-1.amazonaws.com:/home/ravi/myBuild
+sudo scp -r -i key filename or foldername ubuntu@id_address:/home
 
 
 
