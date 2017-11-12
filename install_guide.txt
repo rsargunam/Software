@@ -40,7 +40,7 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 #---------------------
 > source ~/.bashrc 
 
-============================================================================
+======================================================================================================
 Tweak Tool;
 #Google Chrome Install
 -----------------------------
@@ -48,7 +48,7 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt-get update
 sudo apt-get install google-chrome-stable
-============================================================================
+=======================================================================================================
 #Skype Install
 -----------------------------
 Install apt-transport-https:
@@ -189,6 +189,167 @@ AWS Install
 sudo scp -r -i key filename or foldername ubuntu@id_address:/home
 
 
+===============================================================================================================================
+
+Chef 
+====
+
+Chef Installation
+======================
+https://downloads.chef.io/
+Chef Development Kit 2.3.4
+
+https://manage.chef.io/login
+
+==========================================
+Create local dir > mkdir chefProject >.chef folder
+Create new organizations (New Projects)
+Go to Admin > Click on Organizationtest_9 > Manage Organization > please select the Project (test_9) 
+In Left side Generate Knife Config enable
+Click on the Generate Knife Config > download into your local system/machine
+Go to User > Click on the user (rsargunam) > Select Reset Key
+Please download the .pem into local system
+After download these two files copied into . chef folder ".pem & knife.rb " 
+Use Copy command sudo cp knife.rb rsargunam.pem /home/ravishanker/chefProjects/test9/.chef
+
+Now we need to connect to local workstation to chef server
+
+> knife ssl check
+
+Please create local folder called cookbooks > mkdir cookbooks
+and inside this folde please download the recipes form git > git clone https://github.com/learn-chef/learn_chef_apache2
+
+> sudo knife cookbook upload learn_chef_apache2
+
+> sudo knife cookbook list
+
+> Create docker container > sudo docker run -it --name "container name" ubuntu /bin/bash > install  
+
+> In docker container please create user and update the user name into /etc/sudoers > ravi All=(All:All)All
+
+Fanial Create Bootstrap
+------------------------------
+
+> knife bootstrap 172.17.0.5 --ssh-user ravi --ssh-password 'Test1234' --sudo --use-sudo-password --node-name chefNode --run-list 'recipe[learn_chef_apache2]'
+
+Creating Roles
+======================
+Create dir > mkdir roles
+> cd roles
+>create Json files >sample.json
+> sudo nano sample.json
+> uplode the roles to chef server > sudo knife role from file roles/sample.json
+> sudo knife node run_list set "Nodename" "role[role name]"
+
+> verif the roles are created or not > sudo knife role list
+
+{
+  "name": "web",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "The base role for systems that serve HTTP traffic",
+  "run_list": [
+    "recipe[learn_chef_apache2]",
+    "recipe[test1]"
+  ]
+}
 
 
 
+================================================================================================================================================================
+JSON
+===================
+
+What?
+=========================================
+JSON stands for JavaScript Object Notation
+JSON is a lightweight data-interchange format
+JSON is "self-describing" and easy to understand
+JSON is language independent *
+=========================================================================
+
+Why use JSON?
+=================================================
+Since the JSON format is text only, it can easily be sent to and from a server, and used as a data format by any programming language.
+JavaScript has a built in function to convert a string,written in JSON format, 
+
+JSON Syntax
+===================================================
+
+JSON Syntax Rules
+JSON syntax is derived from JavaScript object notation syntax:
+
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+
+
+JSON data is written as name/value pairs.
+===================================================
+"name":"John"
+
+
+JSON - Evaluates to JavaScript Objects
+===================================================
+{ "name":"John" }
+
+JSON Values
+===================================================
+
+a string
+a number
+an object (JSON object)
+an array
+a boolean
+null
+a function
+a date
+undefined
+
+
+JSON Uses JavaScript Syntax
+=====================================================
+
+var person = { "name":"John", "age":31, "city":"New York" };
+
+
+
+<html>
+  <body>
+    <h1>welcome to JSON</h1>
+        <!--Using Variable -->
+        <script type="text/javascript">
+
+                var a = 15;
+                var b = 100;
+                var z = (a + b);
+                console.log(z);
+        </script>
+
+        <!-- Using Json -->
+        <script type="text/javascript">
+
+                var a = ["Ravi",5,10.9,{"name" : "Ravishanker Sargunam" }]
+                console.log(a[0]);
+                console.log(a[1]);
+                console.log(a[2]);
+                console.log(a[3].name);
+        </script>
+         <script type="text/javascript">
+                 var a = ["Ravi",5,10.9,
+                                {       
+                                        "name" : "Ravishanker Sargunam", 
+                                        "age"  : 32,
+                                 }
+                        ]
+                console.log(a[0]);
+                console.log(a[1]);
+                console.log(a[2]);
+                console.log(a[3].name);
+                console.log(a[3].age);
+        </script>
+
+  </body>
+</html>
+======================================================================================================================================
