@@ -41,7 +41,7 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 > source ~/.bashrc 
 
 ======================================================================================================
-Tweak Tool;
+Tweak Tool; - sudo apt install gnome-tweak-tool & sudo apt-get install curl
 #Google Chrome Install
 -----------------------------
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
